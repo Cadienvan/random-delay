@@ -27,7 +27,7 @@ export function randomDelay(options: Partial<Options> = {}) {
     return true;
   } else {
     return new Promise((resolve) => {
-      setTimeout(resolve, delay);
+      setTimeout(resolve, delay).unref();
     });
   }
 }
