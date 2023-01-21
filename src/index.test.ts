@@ -1,4 +1,4 @@
-import { randomDelay } from './index';
+import { randomDelay, randomDelayed } from './index';
 import { performance } from 'perf_hooks';
 
 describe('throws', function () {
@@ -39,6 +39,34 @@ describe('async', function () {
       method: 'async'
     };
     await randomDelay(options);
+    expect(performance.now()).toBeGreaterThan(now + options.minDelay);
+  });
+});
+
+describe('randomDelayed', function () {
+  it('should wait for randomDelay', async function () {
+    const now = performance.now();
+    const options = {
+      minDelay: 1000,
+      maxDelay: 2000,
+      method: 'sync'
+    };
+    const fn = () => true;
+    const delayedFn = randomDelayed(fn, options);
+    delayedFn();
+    expect(performance.now()).toBeGreaterThan(now + options.minDelay);
+  });
+
+  it('should wait for randomDelay', async function () {
+    const now = performance.now();
+    const options = {
+      minDelay: 1000,
+      maxDelay: 2000,
+      method: 'async'
+    };
+    const fn = () => true;
+    const delayedFn = randomDelayed(fn, options);
+    await delayedFn();
     expect(performance.now()).toBeGreaterThan(now + options.minDelay);
   });
 });
