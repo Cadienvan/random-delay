@@ -1,67 +1,66 @@
 # What is this?
 
-A simple scaffolding tool for creating a new project to be published to npm.  
-It provides a build command that will compile your code to a CommonJS Node 14.16 target, allowing named imports for CommonJS packages inside ESM files.  
-The package contains a simple "hello world" based on TypeScript, built on esbuild, tested through Jest and linted with ESLint and Prettier.  
-It also provides a Husky pre-commit hook to run some linting based on prettier and eslint and run tests, so you can simple `git add` and `git commit` without worrying about anything else.
+A library providing a parametrized random delay mechanism for functions (Both async and sync)
 
-## How To Install?
+## How do I install it?
 
-```bash
-git clone git://github.com/Cadienvan/npm-package-ts-scaffolding.git package_name
-cd package_name
-npm install
-npx husky install
-```
-
-## What do you mean by `allowing named imports from CommonJS`?
-
-If you try to run `npm run build` you will be able to import the `sayHello` function from the `index.js` file, both via `require` and `import` syntax.
-
-### Importing via `require`
-
-```js
-const { sayHello } = require('my-package');
-```
-
-### Importing via `import`
-
-```js
-import { sayHello } from 'my-package';
-```
-
-# Why did you build it?
-
-I got tired of copying and pasting the same files over and over again.  
-This is a simple tool to create a new project with the basic files needed to publish to npm.
-
-# How can I personalize it?
-
-You can change the `package.json` file to your liking, bringing your own package name and description.  
-Please, remember to give me a star if you like the project!
-
-# What's Inside?
-
-- Typescript
-- Jest
-- Eslint
-- Prettier
-- Husky
-- Esbuild
-- Commitlint
-
-# How to push and release an update?
+You can install it by using the following command:
 
 ```bash
-git add --all
-git commit -m "chore: update package"
-npm run release:patch
+npm install random-delay
 ```
 
-Remember to follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard.
-You can substitute `patch` with `minor` or `major` to update the version accordingly.
+## How do I use it?
 
-# How to run tests?
+Both sync and async functions are supported.  
+The library provides a `randomDelay` function that takes 3 parameters:
+- `minDelay`: The minimum delay in milliseconds. Defaults to `0`.
+- `maxDelay`: The maximum delay in milliseconds. Defaults to `1000`.
+- `method`: The method to use. Can be either `sync` or `async`. Defaults to `sync`.
+
+### Sync
+
+The library uses the [`event-loop-sleep`](https://github.com/Cadienvan/event-loop-sleep) library to sleep the event loop using `SharedArrayBuffer` and `Atomics` for sync functions.
+
+```javascript
+const { randomDelay } = require('random-delay');
+
+// Do something before...
+randomDelay(1000, 2000, 'sync');
+// Do something after...
+```
+
+### Async
+
+The library uses a simple `setTimeout` (unrefed) for async functions.
+
+```javascript
+const { randomDelay } = require('random-delay');
+
+// Do something before...
+await randomDelay(1000, 2000, 'async');
+// Do something after...
+```
+
+### randomDelayed
+
+The library also provides a `randomDelayed`, a higher-order function that takes 2 parameters:
+- `fn`: The function to wrap.
+- `options`: The options to pass to `randomDelay`. Defaults to the same as `randomDelay`.
+
+```javascript
+const { randomDelayed } = require('random-delay');
+
+// Do something before...
+await randomDelayed(() => {
+  // Do something
+}, { minDelay: 1000, maxDelay: 2000, method: 'async' });
+// Do something after...
+```
+
+# Tests
+
+You can run the tests by using the following command:
 
 ```bash
 npm test
