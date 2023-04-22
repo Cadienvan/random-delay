@@ -1,3 +1,14 @@
+#### 1.1.1 (2023-04-22)
+
+##### Chores
+
+*  fixed wrong workflow path ([16c14be4](https://github.com/Cadienvan/random-delay/commit/16c14be443987f254b5eab9be5448a356379a8a3))
+
+##### Continuous Integration
+
+*  Added Node 20 in ci test matrix ([b5eb1cbc](https://github.com/Cadienvan/random-delay/commit/b5eb1cbc3075309f489cca0d789501f6105b4329))
+*  Added Node CI ([c45257fd](https://github.com/Cadienvan/random-delay/commit/c45257fd1e25377c55dc1c350c00584f0d21de96))
+
 ### 1.1.0 (2023-01-21)
 
 ##### Chores
