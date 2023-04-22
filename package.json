@@ -2,7 +2,7 @@
   "name": "random-delay",
   "description": "A library providing a parametrized random delay mechanism for functions (Both async and sync)",
   "private": false,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
