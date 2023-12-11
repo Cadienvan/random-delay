@@ -74,6 +74,6 @@
     "random delay function"
   ],
   "dependencies": {
-    "event-loop-sleep": "^1.0.1"
+    "event-loop-sleep": "^1.0.2"
   }
 }
