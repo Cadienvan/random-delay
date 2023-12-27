@@ -1,3 +1,9 @@
+#### 1.1.2 (2023-12-27)
+
+##### Chores
+
+*  update dependencies ([5d14d42b](https://github.com/Cadienvan/random-delay/commit/5d14d42bba1f7cbe1719d1ffe0619490a9f30b4b))
+
 #### 1.1.1 (2023-04-22)
 
 ##### Chores
